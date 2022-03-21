@@ -9,4 +9,9 @@ public class Pocket {
 		this.bet = 0;
 
 	}
+	
+	public double getBet() {
+		return this.bet;
+	}
+	
 }
