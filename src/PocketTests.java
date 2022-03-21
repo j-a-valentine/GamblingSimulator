@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 class PocketTests {
 
 	@Test
-	void testGetBet() {
+	void testGetBetEmpty() {
 		Pocket p = new Pocket(5);
 		assertEquals(0, p.getBet(), 0);
 	}
