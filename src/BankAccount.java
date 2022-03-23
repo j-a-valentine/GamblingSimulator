@@ -9,4 +9,8 @@ public class BankAccount {
 		this.history = new ArrayList<String>();
 		this.balance = 0;
 	}
+	
+	public double getBalance() {
+		return this.balance;
+	}
 }
