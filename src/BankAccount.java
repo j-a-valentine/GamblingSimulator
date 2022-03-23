@@ -13,4 +13,11 @@ public class BankAccount {
 	public double getBalance() {
 		return this.balance;
 	}
+	
+	public boolean deposit(double amount) {
+		if (amount > 0) {
+		this.balance += amount;
+		}
+		return amount > 0;
+		}
 }
