@@ -17,5 +17,4 @@ public class Pocket {
 	public int getNumber() {
 		return this.number;
 	}
-	
 }
