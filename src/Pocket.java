@@ -13,5 +13,11 @@ public class Pocket {
 	public double getBet() {
 		return this.bet;
 	}
-	
+	public boolean addBet(double betAmount) {
+		if (betAmount > 0) {
+			this.bet += betAmount;
+		}
+		return betAmount > 0;
+	}	
+
 }
