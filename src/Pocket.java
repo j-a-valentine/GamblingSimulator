@@ -14,7 +14,7 @@ public class Pocket {
 		return this.bet;
 	}
 	
-	public double getNumber() {
+	public int getNumber() {
 		return this.number;
 	}
 	
