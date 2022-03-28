@@ -1,6 +1,7 @@
 # GamblingSimulator
 
 Iteration 1:
+
 	- BankAccount object that can manage the users transactions
 	
 	- Pocket object that stores the bets on each number
@@ -19,6 +20,7 @@ Iteration 1:
 	
 	
 Iteration 2:
+
 	- A System object that handles interactions between BankAccounts and Roulette
 	
 	- A second game
