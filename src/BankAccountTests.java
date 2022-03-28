@@ -62,9 +62,8 @@ class BankAccountTests {
 		BankAccount account = new BankAccount();
 		
 		boolean overDrawn = account.withdraw(5);
-		double endingBalance = account.getBalance();
 		
 		assertFalse(overDrawn);
 	}
-	
+
 }
