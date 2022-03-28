@@ -20,4 +20,14 @@ public class BankAccount {
 		}
 		return amount > 0;
 		}
+	
+	public boolean withdraw(double amount) {
+		if (amount > 0) {
+			if (amount > this.balance) {
+				return false;
+			}
+		this.balance -= amount;
+		}
+		return amount > 0;
+		}
 }
