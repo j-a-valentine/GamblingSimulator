@@ -1,4 +1,10 @@
+package tests;
 import static org.junit.jupiter.api.Assertions.*;
+
+import simulator.Main;
+import simulator.BankAccount;
+import simulator.Pocket;
+import simulator.Roulette;
 
 import org.junit.jupiter.api.Test;
 
