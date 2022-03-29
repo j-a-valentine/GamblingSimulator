@@ -14,9 +14,9 @@ Iteration 1:
 	
 	- To compile and run our code from the command line:
 	
-		- javac -d bin src/*.java
+		- javac -d bin src/simulator/*.java
 		
-		- java -cp bin src Main
+		- java -cp bin src simulator.Main
 	
 	
 Iteration 2:
