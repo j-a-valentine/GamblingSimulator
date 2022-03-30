@@ -13,7 +13,7 @@ Iteration 1:
 	- Unit tests for BankAccount, Pocket, and Roulette
 	
 	- A temporary interface for the user to interact with the game
-		- We will be increasing the functionality of our porgram to allow for users to play and interact with the game, but at the current moment, 		     the program is preset.
+		- We will be increasing the functionality of our porgram to allow for users to play and interact with the game, but at the current moment, the program is preset.
 	
 	- To compile and run our code from the command line:
 	
