@@ -53,6 +53,14 @@ public class Roulette {
 
 	}
 	
+	public void displayBets() {
+		for (Pocket p : this.pockets) {
+			if (p.getBet() != 0) {
+				System.out.println(p.getNumber() + " : $ " + p.getBet());
+			}
+		}
+	}
+	
 	public double play() throws InterruptedException {
 		this.displayWheel();
 		int selectedIndex = this.spinWheel();
