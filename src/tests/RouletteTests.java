@@ -40,4 +40,19 @@ class RouletteTests {
 		boolean result = r.addBet(100, -1);
 		assertFalse(result);
 	}
+	@Test
+	void testNoBetPlay() throws InterruptedException{
+		Roulette r = new Roulette();
+		double winnings = r.play();
+		assertEquals(0, winnings, 0);
+	}
+	@Test
+	void testAllBetPlay() throws InterruptedException{
+		Roulette r = new Roulette();
+		r.addBet(18, 'e');
+		r.addBet(18, 'o');
+		r.addBet(1, 0);
+		double winnings = r.play();
+		assertEquals(35, winnings, .1);
+	}
 }

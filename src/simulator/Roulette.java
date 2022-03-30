@@ -52,13 +52,47 @@ public class Roulette {
 		return false;
 
 	}
+	
+	public double play() throws InterruptedException {
+		this.displayWheel();
+		int selectedIndex = this.spinWheel();
+		this.displaySpin(selectedIndex);
+		double winnings = this.evaluateBets(selectedIndex);
+		this.clearBets();
+		return winnings;
+	}
+	
+	private int spinWheel() {
+		return (int) (Math.random() * this.pockets.size());
+	}
 
-	public void displayBets() {
-		for (Pocket p : this.pockets) {
-			if (p.getBet() != 0) {
-				System.out.println(p.getNumber() + " : $ " + p.getBet());
+	private void displayWheel() {
+		String wheelDisplay = "";
+		for (Pocket x : this.pockets) {
+			if (x.getNumber() < 10) {
+				wheelDisplay += 0 + "";
+			}
+			wheelDisplay += x.getNumber() + " ";
+
+		}
+		System.out.println(wheelDisplay);
+	}
+	
+	private void displaySpin(int selectedIndex) throws InterruptedException {
+		for (int x = 0; x < selectedIndex; x++) {
+			for (int y = 0; y < 3; y++) {
+				Thread.sleep(50);
+				System.out.print(".");
 			}
 		}
+		System.out.println(".");
+	}
+	
+	private double evaluateBets(int selectedIndex) {
+		double winnings = this.pockets.get(selectedIndex).getBet() * 35;
+		int winningNumber = this.pockets.get(selectedIndex).getNumber();
+		System.out.println("Number " + winningNumber +" has won you $"+winnings+"!");
+		return winnings;
 	}
 
 	private int getPocketIndex(int pocketNumber) {
@@ -68,6 +102,12 @@ public class Roulette {
 			}
 		}
 		return -1;
+	}
+	
+	private void clearBets() {
+		for (Pocket p : this.pockets) {
+			p.clearBet();
+		}
 	}
 
 	private int countPockets(char evenOrOdd) {
