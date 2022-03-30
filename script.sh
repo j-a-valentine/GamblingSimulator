@@ -2,4 +2,4 @@
 
 javac -d bin src/simulator/*.java
 	
-java -cp bin src simulator.Main
+java -cp bin simulator.Main
