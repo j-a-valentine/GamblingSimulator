@@ -1,4 +1,5 @@
 package simulator;
+
 import java.util.ArrayList;
 
 public class Roulette {
@@ -28,31 +29,19 @@ public class Roulette {
 
 	public boolean addBet(double betAmount, char evenOrOdd) {
 		if (evenOrOdd == 'e' || evenOrOdd == 'E') {
-			betAmount = betAmount / this.countPockets('e');
-			for (int x = 0; x < this.pockets.size(); x++) {
-				if (this.pockets.get(x).getNumber() % 2 == 0 && this.pockets.get(x).getNumber() != 0) {
-					if (!this.pockets.get(x).addBet(betAmount)) {
-						return false;
-					}
-				}
-			}
-			return true;
-		} else if (evenOrOdd == 'o' || evenOrOdd == 'O') {
-			betAmount = betAmount / this.countPockets('o');
-			for (int x = 0; x < this.pockets.size(); x++) {
-				if (this.pockets.get(x).getNumber() % 2 == 1) {
-					if (!this.pockets.get(x).addBet(betAmount)) {
-						return false;
-					}
-				}
-			}
-			return true;
-
+			betAmount /= this.countEvenPockets();
+			return this.betEven(betAmount);
 		}
-		return false;
+
+		else if (evenOrOdd == 'o' || evenOrOdd == 'O') {
+			betAmount /= this.countOddPockets();
+			return this.betOdd(betAmount);
+		} else {
+			return false;
+		}
 
 	}
-	
+
 	public void displayBets() {
 		for (Pocket p : this.pockets) {
 			if (p.getBet() != 0) {
@@ -60,7 +49,7 @@ public class Roulette {
 			}
 		}
 	}
-	
+
 	public double play() throws InterruptedException {
 		this.displayWheel();
 		int selectedIndex = this.spinWheel();
@@ -69,7 +58,7 @@ public class Roulette {
 		this.clearBets();
 		return winnings;
 	}
-	
+
 	private int spinWheel() {
 		return (int) (Math.random() * this.pockets.size());
 	}
@@ -85,7 +74,7 @@ public class Roulette {
 		}
 		System.out.println(wheelDisplay);
 	}
-	
+
 	private void displaySpin(int selectedIndex) throws InterruptedException {
 		for (int x = 0; x < selectedIndex; x++) {
 			for (int y = 0; y < 3; y++) {
@@ -95,11 +84,11 @@ public class Roulette {
 		}
 		System.out.println(".");
 	}
-	
+
 	private double evaluateBets(int selectedIndex) {
 		double winnings = this.pockets.get(selectedIndex).getBet() * 35;
 		int winningNumber = this.pockets.get(selectedIndex).getNumber();
-		System.out.println("Number " + winningNumber +" has won you $"+winnings+"!");
+		System.out.println("Number " + winningNumber + " has won you $" + winnings + "!");
 		return winnings;
 	}
 
@@ -111,28 +100,52 @@ public class Roulette {
 		}
 		return -1;
 	}
-	
+
 	private void clearBets() {
 		for (Pocket p : this.pockets) {
 			p.clearBet();
 		}
 	}
 
-	private int countPockets(char evenOrOdd) {
+	private int countEvenPockets() {
 		int count = 0;
-		if (evenOrOdd == 'e' || evenOrOdd == 'E') {
-			for (int x = 0; x < this.pockets.size(); x++) {
-				if (this.pockets.get(x).getNumber() % 2 == 0 && this.pockets.get(x).getNumber() != 0) {
-					count++;
-				}
-			}
-		} else if (evenOrOdd == 'o' || evenOrOdd == 'O') {
-			for (int x = 0; x < this.pockets.size(); x++) {
-				if (this.pockets.get(x).getNumber() % 2 != 0 && this.pockets.get(x).getNumber() != 0) {
-					count++;
-				}
+		for (int x = 0; x < this.pockets.size(); x++) {
+			if (this.pockets.get(x).getNumber() % 2 == 0 && this.pockets.get(x).getNumber() != 0) {
+				count++;
 			}
 		}
 		return count;
+	}
+
+	private int countOddPockets() {
+		int count = 0;
+		for (int x = 0; x < this.pockets.size(); x++) {
+			if (this.pockets.get(x).getNumber() % 2 != 0 && this.pockets.get(x).getNumber() != 0) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	private boolean betEven(double betAmount) {
+		for (int x = 0; x < this.pockets.size(); x++) {
+			if (this.pockets.get(x).getNumber() % 2 == 0 && this.pockets.get(x).getNumber() != 0) {
+				if (!this.pockets.get(x).addBet(betAmount)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private boolean betOdd(double betAmount) {
+		for (int x = 0; x < this.pockets.size(); x++) {
+			if (this.pockets.get(x).getNumber() % 2 == 1) {
+				if (!this.pockets.get(x).addBet(betAmount)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
