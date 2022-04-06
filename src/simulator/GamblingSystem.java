@@ -62,12 +62,12 @@ public class GamblingSystem {
 	public void placeRouletteBet(double betAmount, int betLocation) {
 
 		if (Character.isLetter(betLocation)) {
-			if(this.roulette.addBet(betAmount, (char) betLocation){
+			if(this.roulette.addBet(betAmount, (char) betLocation)) {
 				account.withdraw(betAmount);
 			}
 		} else {
 			this.roulette.addBet(betAmount, betLocation);
-			if(this.roulette.addBet(betAmount, (char) betLocation){
+			if(this.roulette.addBet(betAmount, (char) betLocation)) {
 				account.withdraw(betAmount);
 			}
 		}
