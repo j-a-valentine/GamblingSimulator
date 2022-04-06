@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class GamblingSystem {
 
 	private Roulette roulette;
+	private BankAccount account;
 
 	public GamblingSystem() {
 		this.roulette = new Roulette();
+		this.account = new BankAccount();
 	}
 
 	public void runRoulette() throws InterruptedException {
@@ -28,7 +30,10 @@ public class GamblingSystem {
 				this.roulette.displayBets();
 			}
 			else if(userInput.equalsIgnoreCase("p")) {
-				this.roulette.play();
+				double winningAmount = this.roulette.play();
+				winningAmount = (Math.round(winningAmount*100)) / 100;
+				account.deposit(winningAmount);
+				isDone = true;
 			}
 			else {
 				System.out.println("Invalid Input");
@@ -47,19 +52,22 @@ public class GamblingSystem {
 			betAmount = Double.parseDouble(input[0]);
 			betLocation = Integer.parseInt(input[1]);
 
-			placeRoulleteBet(betAmount, betLocation);
+			placeRouletteBet(betAmount, betLocation);
 		} else {
 			System.out.println("Bet Not Valid");
 		}
 
 	}
 
-	public void placeRoulleteBet(double betAmount, int betLocation) {
+	public void placeRouletteBet(double betAmount, int betLocation) {
 
 		if (Character.isLetter(betLocation)) {
 			this.roulette.addBet(betAmount, (char) betLocation);
+			
+		} else {
+			this.roulette.addBet(betAmount, betLocation);
+			
 		}
-		this.roulette.addBet(betAmount, betLocation);
 
 	}
 
