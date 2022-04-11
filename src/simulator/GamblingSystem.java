@@ -95,17 +95,20 @@ public class GamblingSystem {
 		return false;
 	}
 
-	private int isValidRouletteBet(String[] userBet) {
+	public int isValidRouletteBet(String[] userBet) {
 		try {
 			Double.parseDouble(userBet[0]);
 		} catch (NumberFormatException e) {
+			//wrong
 			return 0;
 		}
 		try {
 			Integer.parseInt(userBet[1]);
+			//good double int
 			return 1;
 		} catch (NumberFormatException e) {
 			if ((userBet[1].charAt(0) == 'e' || userBet[1].charAt(0) == 'o') && userBet[1].length() == 1) {
+				// good double char
 				return 2;
 			}
 			return 0;
@@ -116,6 +119,18 @@ public class GamblingSystem {
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Please place your bet in the form amount pocketnumber/e/o");
 		return reader.nextLine().split(" ");
+	}
+	
+	public void deposit(int depositAmount) {
+		this.account.deposit(depositAmount);
+		System.out.println("Account :" + this.account);
+	}
+	
+	public double getFinalBalance() {
+		double finalBal = this.account.getBalance();
+		System.out.println(finalBal);
+		return finalBal;
+		
 	}
 
 }
