@@ -88,6 +88,7 @@ public class Roulette {
 	private double evaluateBets(int selectedIndex) {
 		double winnings = this.pockets.get(selectedIndex).getBet() * 35;
 		int winningNumber = this.pockets.get(selectedIndex).getNumber();
+		winnings = Math.round(winnings*100)/100.0;
 		System.out.println("Number " + winningNumber + " has won you $" + winnings + "!");
 		return winnings;
 	}

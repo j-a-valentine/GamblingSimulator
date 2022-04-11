@@ -21,21 +21,18 @@ public class GamblingSystem {
 			System.out.println("b: Place a bet");
 			System.out.println("d: Display the bets");
 			System.out.println("p: Play the game");
-			
+
 			String userInput = reader.nextLine();
-			if(userInput.equalsIgnoreCase("b")) {
+			if (userInput.equalsIgnoreCase("b")) {
 				this.makeRouletteBet();
-			}
-			else if(userInput.equalsIgnoreCase("d")) {
+			} else if (userInput.equalsIgnoreCase("d")) {
 				this.roulette.displayBets();
-			}
-			else if(userInput.equalsIgnoreCase("p")) {
+			} else if (userInput.equalsIgnoreCase("p")) {
 				double winningAmount = this.roulette.play();
-				winningAmount = (Math.round(winningAmount*100)) / 100;
+				winningAmount = (Math.round(winningAmount * 100)) / 100;
 				account.deposit(winningAmount);
 				isDone = true;
-			}
-			else {
+			} else {
 				System.out.println("Invalid Input");
 			}
 		}
@@ -47,13 +44,18 @@ public class GamblingSystem {
 		String[] input = promptRouletteBet();
 
 		double betAmount = 0;
-		int betLocation = 0;
-		if (isValidRouletteBet(input)) {
+		
+		if (isValidRouletteBet(input) == 1) {
 			betAmount = Double.parseDouble(input[0]);
-			betLocation = Integer.parseInt(input[1]);
-
+			int betLocation = Integer.parseInt(input[1]);
 			placeRouletteBet(betAmount, betLocation);
-		} else {
+		}
+		else if(isValidRouletteBet(input) == 2){
+			betAmount = Double.parseDouble(input[0]);
+			char betLocation = input[1].charAt(0);
+			placeRouletteBet(betAmount, betLocation);
+		}
+		else {
 			System.out.println("Bet Not Valid");
 		}
 
@@ -62,25 +64,32 @@ public class GamblingSystem {
 	public void placeRouletteBet(double betAmount, int betLocation) {
 
 		if (Character.isLetter(betLocation)) {
-			if(this.roulette.addBet(betAmount, (char) betLocation)) {
+			if (this.roulette.addBet(betAmount, (char) betLocation)) {
 				account.withdraw(betAmount);
 			}
 		} else {
 			this.roulette.addBet(betAmount, betLocation);
-			if(this.roulette.addBet(betAmount, (char) betLocation)) {
+			if (this.roulette.addBet(betAmount, (char) betLocation)) {
 				account.withdraw(betAmount);
 			}
 		}
 
 	}
 
-	private boolean isValidRouletteBet(String[] userBet) {
+	private int isValidRouletteBet(String[] userBet) {
 		try {
-			double betAmount = Double.parseDouble(userBet[0]);
-			int betLocation = Integer.parseInt(userBet[1]);
-			return true;
+			Double.parseDouble(userBet[0]);
 		} catch (NumberFormatException e) {
-			return false;
+			return 0;
+		}
+		try {
+			Integer.parseInt(userBet[1]);
+			return 1;
+		} catch (NumberFormatException e) {
+			if ((userBet[1].charAt(0) == 'e' || userBet[1].charAt(0) == 'o') && userBet[1].length()==1) {
+				return 2;
+			}
+			return 0;
 		}
 	}
 
