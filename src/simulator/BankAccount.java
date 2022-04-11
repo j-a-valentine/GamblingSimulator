@@ -8,7 +8,7 @@ public class BankAccount {
 
 	public BankAccount() {
 		this.history = new ArrayList<String>();
-		this.balance = 0;
+		this.balance = 1000;
 	}
 
 	public double getBalance() {

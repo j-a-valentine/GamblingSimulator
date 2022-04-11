@@ -43,6 +43,7 @@ public class Roulette {
 	}
 
 	public void displayBets() {
+		System.out.println("Current Bets:");
 		for (Pocket p : this.pockets) {
 			if (p.getBet() != 0) {
 				System.out.println(p.getNumber() + " : $ " + p.getBet());
@@ -86,7 +87,7 @@ public class Roulette {
 	}
 
 	private double evaluateBets(int selectedIndex) {
-		double winnings = this.pockets.get(selectedIndex).getBet() * 35;
+		double winnings = this.pockets.get(selectedIndex).getBet() * 36;
 		int winningNumber = this.pockets.get(selectedIndex).getNumber();
 		winnings = Math.round(winnings*100)/100.0;
 		System.out.println("Number " + winningNumber + " has won you $" + winnings + "!");
