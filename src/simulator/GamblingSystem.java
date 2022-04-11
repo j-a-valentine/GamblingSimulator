@@ -18,20 +18,26 @@ public class GamblingSystem {
 		boolean isDone = false;
 
 		while (!isDone) {
+			System.out.println("");
+			System.out.println("Balance: $" + this.account.getBalance());
 			System.out.println("b: Place a bet");
 			System.out.println("d: Display the bets");
 			System.out.println("p: Play the game");
+			System.out.println("");
 
 			String userInput = reader.nextLine();
 			if (userInput.equalsIgnoreCase("b")) {
 				this.makeRouletteBet();
+
 			} else if (userInput.equalsIgnoreCase("d")) {
 				this.roulette.displayBets();
+
 			} else if (userInput.equalsIgnoreCase("p")) {
 				double winningAmount = this.roulette.play();
 				winningAmount = (Math.round(winningAmount * 100)) / 100;
 				account.deposit(winningAmount);
 				isDone = true;
+				System.out.println("Balance: $" + this.account.getBalance());
 			} else {
 				System.out.println("Invalid Input");
 			}
@@ -44,36 +50,49 @@ public class GamblingSystem {
 		String[] input = promptRouletteBet();
 
 		double betAmount = 0;
-		
+
 		if (isValidRouletteBet(input) == 1) {
 			betAmount = Double.parseDouble(input[0]);
 			int betLocation = Integer.parseInt(input[1]);
 			placeRouletteBet(betAmount, betLocation);
-		}
-		else if(isValidRouletteBet(input) == 2){
+
+		} else if (isValidRouletteBet(input) == 2) {
 			betAmount = Double.parseDouble(input[0]);
 			char betLocation = input[1].charAt(0);
 			placeRouletteBet(betAmount, betLocation);
-		}
-		else {
+
+		} else {
 			System.out.println("Bet Not Valid");
 		}
 
 	}
 
-	public void placeRouletteBet(double betAmount, int betLocation) {
+	public boolean placeRouletteBet(double betAmount, int betLocation) {
+		if (this.account.getBalance() >= betAmount) {
+			if (this.roulette.addBet(betAmount, betLocation)) {
+				this.account.withdraw(betAmount);
+				return true;
+			}
+			System.out.println("Pocket not valid");
+			return false;
 
-		if (Character.isLetter(betLocation)) {
-			if (this.roulette.addBet(betAmount, (char) betLocation)) {
-				account.withdraw(betAmount);
-			}
-		} else {
-			this.roulette.addBet(betAmount, betLocation);
-			if (this.roulette.addBet(betAmount, (char) betLocation)) {
-				account.withdraw(betAmount);
-			}
 		}
+		System.out.println("Insufficient Funds to place bet");
+		return false;
+	}
 
+	public boolean placeRouletteBet(double betAmount, char betLocation) {
+		if (this.account.getBalance() >= betAmount) {
+			if (this.roulette.addBet(betAmount, betLocation)) {
+				this.account.withdraw(betAmount);
+				return true;
+			}
+			System.out.println("Pocket not valid");
+			return false;
+
+		}
+		System.out.println("Insufficient Funds to place bet");
+		return false;
 	}
 
 	private int isValidRouletteBet(String[] userBet) {
@@ -86,7 +105,7 @@ public class GamblingSystem {
 			Integer.parseInt(userBet[1]);
 			return 1;
 		} catch (NumberFormatException e) {
-			if ((userBet[1].charAt(0) == 'e' || userBet[1].charAt(0) == 'o') && userBet[1].length()==1) {
+			if ((userBet[1].charAt(0) == 'e' || userBet[1].charAt(0) == 'o') && userBet[1].length() == 1) {
 				return 2;
 			}
 			return 0;
