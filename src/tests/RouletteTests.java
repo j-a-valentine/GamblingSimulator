@@ -53,6 +53,6 @@ class RouletteTests {
 		r.addBet(18, 'o');
 		r.addBet(1, 0);
 		double winnings = r.play();
-		assertEquals(35, winnings, .1);
+		assertEquals(36, winnings, .1);
 	}
 }
