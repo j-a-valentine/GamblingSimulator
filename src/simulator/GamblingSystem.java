@@ -123,12 +123,10 @@ public class GamblingSystem {
 	
 	public void deposit(int depositAmount) {
 		this.account.deposit(depositAmount);
-		System.out.println("Account :" + this.account);
 	}
 	
 	public double getFinalBalance() {
 		double finalBal = this.account.getBalance();
-		System.out.println(finalBal);
 		return finalBal;
 		
 	}
