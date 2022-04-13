@@ -18,32 +18,35 @@ public class GamblingSystem {
 		boolean isDone = false;
 
 		while (!isDone) {
-			System.out.println("");
-			System.out.println("Balance: $" + this.account.getBalance());
-			System.out.println("b: Place a bet");
-			System.out.println("d: Display the bets");
-			System.out.println("p: Play the game");
-			System.out.println("");
+
+			this.displayRouletteOptions();
+			System.out.println("Balance: $" + this.account.getBalance()+"\n");
 
 			String userInput = reader.nextLine();
+
 			if (userInput.equalsIgnoreCase("b")) {
 				this.makeRouletteBet();
 
-			} else if (userInput.equalsIgnoreCase("d")) {
+			}
+
+			else if (userInput.equalsIgnoreCase("d")) {
 				this.roulette.displayBets();
 
 			}
-			else if(userInput.equalsIgnoreCase("w")) {
+
+			else if (userInput.equalsIgnoreCase("w")) {
 				this.roulette.displayWheel();
 			}
+
 			else if (userInput.equalsIgnoreCase("p")) {
 				double winningAmount = this.roulette.play();
 				winningAmount = (Math.round(winningAmount * 100)) / 100;
 				account.deposit(winningAmount);
 				isDone = true;
-				System.out.println("Balance: $" + this.account.getBalance());
-			} else {
-				System.out.println("Invalid Input");
+			}
+
+			else {
+				System.out.println("Invalid Input\n");
 			}
 		}
 
@@ -75,6 +78,7 @@ public class GamblingSystem {
 		if (this.account.getBalance() >= betAmount) {
 			if (this.roulette.addBet(betAmount, betLocation)) {
 				this.account.withdraw(betAmount);
+				System.out.println("Bet placed");
 				return true;
 			}
 			System.out.println("Pocket not valid");
@@ -89,6 +93,7 @@ public class GamblingSystem {
 		if (this.account.getBalance() >= betAmount) {
 			if (this.roulette.addBet(betAmount, betLocation)) {
 				this.account.withdraw(betAmount);
+				System.out.println("Bet placed");
 				return true;
 			}
 			System.out.println("Pocket not valid");
@@ -103,16 +108,13 @@ public class GamblingSystem {
 		try {
 			Double.parseDouble(userBet[0]);
 		} catch (NumberFormatException e) {
-			//wrong
 			return 0;
 		}
 		try {
 			Integer.parseInt(userBet[1]);
-			//good double int
 			return 1;
 		} catch (NumberFormatException e) {
 			if ((userBet[1].charAt(0) == 'e' || userBet[1].charAt(0) == 'o') && userBet[1].length() == 1) {
-				// good double char
 				return 2;
 			}
 			return 0;
@@ -121,18 +123,28 @@ public class GamblingSystem {
 
 	private String[] promptRouletteBet() {
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Please place your bet in the form amount pocketnumber/e/o");
+		System.out.println("Place bet: amount pocketnumber(e:even/o:odd)");
 		return reader.nextLine().split(" ");
 	}
-	
+
 	public void deposit(int depositAmount) {
 		this.account.deposit(depositAmount);
 	}
-	
+
 	public double getFinalBalance() {
 		double finalBal = this.account.getBalance();
 		return finalBal;
-		
+
+	}
+
+	private void displayRouletteOptions() {
+		System.out.println("");
+		System.out.println("Commands:");
+		System.out.println("w: View roulette wheel");
+		System.out.println("b: Place a bet");
+		System.out.println("d: Display the bets");
+		System.out.println("p: Play the game");
+		System.out.println("");
 	}
 
 }
