@@ -64,7 +64,7 @@ public class Roulette {
 		return (int) (Math.random() * this.pockets.size());
 	}
 
-	private void displayWheel() {
+	public void displayWheel() {
 		String wheelDisplay = "";
 		for (Pocket x : this.pockets) {
 			if (x.getNumber() < 10) {

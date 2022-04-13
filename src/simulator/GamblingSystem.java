@@ -32,7 +32,11 @@ public class GamblingSystem {
 			} else if (userInput.equalsIgnoreCase("d")) {
 				this.roulette.displayBets();
 
-			} else if (userInput.equalsIgnoreCase("p")) {
+			}
+			else if(userInput.equalsIgnoreCase("w")) {
+				this.roulette.displayWheel();
+			}
+			else if (userInput.equalsIgnoreCase("p")) {
 				double winningAmount = this.roulette.play();
 				winningAmount = (Math.round(winningAmount * 100)) / 100;
 				account.deposit(winningAmount);
