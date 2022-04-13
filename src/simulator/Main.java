@@ -6,8 +6,9 @@ public class Main {
 		// TODO Auto-generated method stub
 		GamblingSystem g = new GamblingSystem();
 		g.deposit(200);
-		
-		g.runRoulette();
+		while (true) {
+			g.runRoulette();
+		}
 	}
 
 }
