@@ -33,4 +33,14 @@ public class DeckTests {
 		assertEquals(beforeSize, afterSize, 0);
 		
 	}
+	@Test
+	void testDrawCard() {
+		Deck d = new Deck();
+		for(int x = 0; x < d.getSize(); x++) {
+			Card c = d.drawCard();
+			assertTrue(c != null && c instanceof Card);
+		}
+		Card n = d.drawCard();
+		assertTrue(n == null);
+	}
 }

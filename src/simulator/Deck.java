@@ -43,6 +43,15 @@ public class Deck {
 		this.cards = temp;
 	}
 	
+	public Card drawCard() {
+		if(this.cards.size() > 0) {
+			Card top = this.cards.get(0);
+			this.cards.remove(0);
+			return top;
+		}
+		return null;
+	}
+	
 	public int getSize() {
 		return this.cards.size();
 	}
