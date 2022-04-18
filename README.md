@@ -38,5 +38,5 @@ Either run script.sh or use the following commands
 	
 **Goals for Iteration 3:**
 
-	- Add a second game
+	- Create a simple slot machine game
 
