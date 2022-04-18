@@ -38,5 +38,7 @@ Either run script.sh or use the following commands
 	
 **Goals for Iteration 3:**
 
-	- Create a simple slot machine game
+	- Cleaning up some of the previous code in the GamblingSystem class.
+	
+	- Create a black jack game using new classes: Card, Deck, and BlackJack as well as implementing the game into the GamblingSystem
 
