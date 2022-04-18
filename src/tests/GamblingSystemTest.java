@@ -126,6 +126,32 @@ class GamblingSystemTest {
 		assertFalse(playDecisionInt);
 
 	}
+	
+	@Test
+	void testCorrectBlackJackAmountInput() {
+		GamblingSystem system = new GamblingSystem();
 
+		boolean amount = system.validBlackJackBet("5");
+		
+		assertTrue(amount);	
+	}
+	
+	@Test
+	void testCorrectBlackJackDouble() {
+		GamblingSystem system = new GamblingSystem();
 
+		boolean amount = system.validBlackJackBet("5.0");
+		
+		assertTrue(amount);	
+	}
+	
+	@Test
+	void testBadBlackJackDouble() {
+		GamblingSystem system = new GamblingSystem();
+
+		boolean amount = system.validBlackJackBet("hello.0");
+		
+		assertFalse(amount);	
+	}
+	
 }

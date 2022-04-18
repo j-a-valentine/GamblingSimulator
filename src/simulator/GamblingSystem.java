@@ -6,10 +6,43 @@ public class GamblingSystem {
 
 	private Roulette roulette;
 	private BankAccount account;
+	//	private BlackJack blackjack;
 
 	public GamblingSystem() {
 		this.roulette = new Roulette();
+		//	this.blackjack = new BlackJack();
 		this.account = new BankAccount();
+	}
+
+	public void runBlackJack() {
+		double betAmount = 0;
+		String input ="";
+
+		betAmount = BlackJackAmount(input);
+
+		if (betAmount <= this.account.getBalance()) {
+			System.out.println("hi");
+
+		}
+
+	}
+
+	public double BlackJackAmount(String input) {
+		while (validBlackJackBet(input) == false) {
+			input = promptBlackJackBet();
+		}
+		
+		return Double.parseDouble(input);
+	}
+	
+	public boolean validBlackJackBet(String input) {
+		try {
+			Double.parseDouble(input);
+			return true;
+		} catch (NumberFormatException e) {
+			System.out.println("Sorry, invalid input. Try again");
+			return false;
+		}
 	}
 
 	public void runRoulette() throws InterruptedException {
@@ -125,6 +158,12 @@ public class GamblingSystem {
 		Scanner reader = new Scanner(System.in);
 		System.out.println("Place bet: amount pocketnumber(e:even/o:odd)");
 		return reader.nextLine().split(" ");
+	}
+
+	private String promptBlackJackBet() {
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Place bet: ");
+		return reader.nextLine();
 	}
 
 	public void deposit(int depositAmount) {
