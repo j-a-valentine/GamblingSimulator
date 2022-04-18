@@ -20,12 +20,12 @@ public class Deck {
 			if (x % 4 == 0 && x != 0) {
 				val++;
 			}
-			this.cards.add(new Card(val, " " + val));
+			this.cards.add(new Card(val, "" + val));
 		}
 	}
 
 	private void fillFaceCards() {
-		String[] displays = { "10", " J", " Q", " K", " A" };
+		String[] displays = { "10", "J", "Q", "K", "A" };
 		for (String s : displays) {
 			for (int x = 0; x < 4; x++) {
 				this.cards.add(new Card(10, s));
@@ -58,7 +58,7 @@ public class Deck {
 	public String toString() {
 		String output = "";
 		for(Card c : this.cards) {
-			output += c.getDisplay();
+			output += c.getDisplay()+" ";
 		}
 		return output;
 	}
