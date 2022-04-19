@@ -25,40 +25,44 @@ public class Deck {
 	}
 
 	private void fillFaceCards() {
-		String[] displays = { "10", "J", "Q", "K", "A" };
+		String[] displays = { "10", "J", "Q", "K" };
 		for (String s : displays) {
 			for (int x = 0; x < 4; x++) {
 				this.cards.add(new Card(10, s));
 			}
 		}
+		for (int x = 0; x < 4; x++) {
+			this.cards.add(new Card(11, "A"));
+		}
 	}
-	
+
 	public void shuffleCards() {
 		LinkedList<Card> temp = new LinkedList<Card>();
-		while(this.cards.size() > 0) {
-			int randomIndex = (int)(Math.random()*this.cards.size());
+		while (this.cards.size() > 0) {
+			int randomIndex = (int) (Math.random() * this.cards.size());
 			temp.add(this.cards.get(randomIndex));
 			this.cards.remove(randomIndex);
 		}
 		this.cards = temp;
 	}
-	
+
 	public Card drawCard() {
-		if(this.cards.size() > 0) {
+		if (this.cards.size() > 0) {
 			Card top = this.cards.get(0);
 			this.cards.remove(0);
 			return top;
 		}
 		return null;
 	}
-	
+
 	public int getSize() {
 		return this.cards.size();
 	}
+
 	public String toString() {
 		String output = "";
-		for(Card c : this.cards) {
-			output += c.getDisplay()+" ";
+		for (Card c : this.cards) {
+			output += c.getDisplay() + " ";
 		}
 		return output;
 	}

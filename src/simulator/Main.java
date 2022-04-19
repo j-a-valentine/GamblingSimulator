@@ -10,11 +10,10 @@ public class Main {
 //			g.runRoulette();
 //		}
 		
-		Deck d = new Deck();
-		d.generateCards();
-		System.out.println(d.toString());
-		d.shuffleCards();
-		System.out.println(d);
+		Hand h = new Hand(true);
+		h.addCard(new Card(10,"10"));
+		h.addCard(new Card(10, "J"));
+		System.out.println(h);
 	}
 
 }
