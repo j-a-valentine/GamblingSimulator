@@ -7,6 +7,7 @@ public class BlackJack {
 	private Deck deck;
 	private Hand playerHand;
 	private Hand CPUHand;
+	private boolean isDone;
 	
 	public BlackJack() {
 		this.deck = new Deck();
@@ -14,6 +15,11 @@ public class BlackJack {
 		this.deck.shuffleCards();
 		this.playerHand = new Hand(false);
 		this.CPUHand = new Hand(true);
+		this.isDone = false;
+	}
+	
+	public void stand() {
+		this.isDone = true;
 	}
 	
 	public int playerHit() {
