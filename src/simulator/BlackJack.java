@@ -45,7 +45,34 @@ public class BlackJack {
 				 System.out.println("Invalid input");
 			 }	 
 		 }
+		 return this.evaluateWinner();
 	}
+	
+	
+	private void CPUPlay() {
+		while(this.CPUHand.evaluate() < this.playerHand.evaluate()) {
+			this.CPUHit();
+		}
+	}
+	
+	public int evaluateWinner() {
+		if(this.playerHand.evaluate() > 21) {
+			return -1;
+		}
+		else if(this.playerHand.evaluate() < 21) {
+			CPUPlay();
+			if(this.playerHand.evaluate() > CPUHand.evaluate()) {
+				return 1;
+			}
+			else if(this.playerHand.evaluate() < CPUHand.evaluate()) {
+				return -1;
+			}
+			if(this.playerHand.evaluate() == CPUHand.evaluate()) {
+				return 0;
+			}
+		}
+	}
+	
 	
 	private String playPrompt() {
 		 Scanner reader = new Scanner(System.in);
