@@ -31,12 +31,11 @@ public class BlackJack {
 
 	
 	public int play() {
-		 while(this.isDone == false) {
+		
+		 while(this.isDone == false && this.playerHand.evaluate() < 21) {
 			 String input = this.playPrompt();
 			 if(input.equalsIgnoreCase("H")) {
-				 if(this.playerHand.hit()>21) {
-					 this.stand();
-				 }
+				 this.playerHit();
 			 }
 			 else if(input.equalsIgnoreCase("S")){
 				 this.stand();
