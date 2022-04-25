@@ -36,9 +36,8 @@ Either run script.sh or use the following commands
 	- Cleaning up the code from Roulette
 	
 	
-**Goals for Iteration 3:**
+**Iteration 3:**
 
-	- Cleaning up some of the previous code in the GamblingSystem class.
+	- A Blackjack object that handles interactions between BankAccounts and Roulette
 	
-	- Create a black jack game using new classes: Card, Deck, and BlackJack as well as implementing the game into the GamblingSystem
-
+	- Added features that allow users to choose game and begin playing.
