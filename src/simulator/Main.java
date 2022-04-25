@@ -10,10 +10,8 @@ public class Main {
 //			g.runRoulette();
 //		}
 		
-		Hand h = new Hand(true);
-		h.addCard(new Card(10,"10"));
-		h.addCard(new Card(10, "J"));
-		System.out.println(h);
+		BlackJack b = new BlackJack();
+		b.play();
 	}
 
 }

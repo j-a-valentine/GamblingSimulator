@@ -57,4 +57,8 @@ public class Hand {
 		}
 		return output;
 	}
+	
+	public void makeVisisble() {
+		this.hideFirst = false;
+	}
 }
