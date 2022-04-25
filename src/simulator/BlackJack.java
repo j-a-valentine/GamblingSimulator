@@ -49,6 +49,7 @@ public class BlackJack {
 		this.displayPlayerHand();
 		this.CPUHand.makeVisisble();
 		this.displayCPUHand();
+		System.out.println();
 		return retValue;
 	}
 
@@ -81,7 +82,9 @@ public class BlackJack {
 
 	private String playPrompt() {
 		Scanner reader = new Scanner(System.in);
-		System.out.println("Press H to hit, and S to stand.");
+		System.out.println();
+		System.out.println("H: Hit");
+		System.out.println("S: Stand");
 		String input = reader.nextLine();
 		return input;
 	}
