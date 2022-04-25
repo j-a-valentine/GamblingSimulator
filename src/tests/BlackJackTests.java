@@ -58,4 +58,74 @@ public class BlackJackTests {
 		
 	}
 	
+	@Test
+	void testEvaluateWinner2Cards() {
+		BlackJack bj = new BlackJack();
+		bj.playerHit();
+		bj.playerHit();
+		
+		int winner = bj.evaluateWinner();
+		int playerVal = bj.getPlayerHandValue();
+		int cpuVal = bj.getCPUHandValue();
+		
+		if(playerVal == cpuVal) {
+			assertEquals(0, winner, 0);
+		}
+		else if(playerVal > cpuVal) {
+			assertEquals(1, winner, 0);
+		}
+		else {
+			assertEquals(-1, winner, 0);
+		}
+		
+
+	}
+	
+	@Test
+	void testEvaluateWinner3Cards() {
+		BlackJack bj = new BlackJack();
+		bj.playerHit();
+		bj.playerHit();
+		bj.playerHit();
+		
+		int winner = bj.evaluateWinner();
+		int playerVal = bj.getPlayerHandValue();
+		int cpuVal = bj.getCPUHandValue();
+		
+		if(playerVal == cpuVal) {
+			assertEquals(0, winner, 0);
+		}
+		else if(playerVal > cpuVal) {
+			assertEquals(1, winner, 0);
+		}
+		else {
+			assertEquals(-1, winner, 0);
+		}
+	}
+	
+	@Test
+	void testEvaluateWinner4Cards() {
+		BlackJack bj = new BlackJack();
+		
+		bj.playerHit();
+		bj.playerHit();
+		bj.playerHit();
+		bj.playerHit();
+		
+		
+		int winner = bj.evaluateWinner();
+		int playerVal = bj.getPlayerHandValue();
+		int cpuVal = bj.getCPUHandValue();
+		
+		if(playerVal == cpuVal) {
+			assertEquals(0, winner, 0);
+		}
+		else if(playerVal > cpuVal) {
+			assertEquals(1, winner, 0);
+		}
+		else {
+			assertEquals(-1, winner, 0);
+		}
+	}
+	
 }
