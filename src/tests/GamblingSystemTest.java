@@ -154,4 +154,5 @@ class GamblingSystemTest {
 		assertFalse(amount);	
 	}
 	
+	
 }
