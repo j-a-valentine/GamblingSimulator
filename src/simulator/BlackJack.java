@@ -34,7 +34,7 @@ public class BlackJack {
 
 	public int play() {
 		this.initializeHands();
-		while (this.isDone == false && this.playerHand.evaluate() != -1) {
+		while (this.isDone == false && this.playerHand.evaluate() != -1 && this.playerHand.evaluate() != 21) {
 			String input = this.playPrompt();
 			if (input.equalsIgnoreCase("H")) {
 				this.playerHit();
@@ -44,7 +44,12 @@ public class BlackJack {
 				System.out.println("Invalid input");
 			}
 		}
-		return this.evaluateWinner();
+		System.out.println("-----------");
+		int retValue = this.evaluateWinner();
+		this.displayPlayerHand();
+		this.CPUHand.makeVisisble();
+		this.displayCPUHand();
+		return retValue;
 	}
 
 	private void CPUPlay() {
@@ -54,28 +59,28 @@ public class BlackJack {
 	}
 
 	public int evaluateWinner() {
-
 		if (this.playerHand.evaluate() == 21) {
+			System.out.println("You have won");
 			return 1;
 		} else if (this.playerHand.evaluate() == -1) {
+			System.out.println("You have lost");
 			return -1;
 		} else {
 			this.CPUPlay();
 			if (this.playerHand.evaluate() > this.CPUHand.evaluate()) {
+				System.out.println("You have won");
 				return 1;
 			} else if (this.playerHand.evaluate() < this.CPUHand.evaluate()) {
+				System.out.println("You have Lost");
 				return -1;
-
 			}
+			System.out.println("You have tied");
 			return 0;
 		}
-
 	}
 
 	private String playPrompt() {
 		Scanner reader = new Scanner(System.in);
-		System.out.println(this.playerHand);
-		System.out.println(this.CPUHand);
 		System.out.println("Press H to hit, and S to stand.");
 		String input = reader.nextLine();
 		return input;
@@ -85,6 +90,7 @@ public class BlackJack {
 		Card newCard = this.deck.drawCard();
 		this.playerHand.addCard(newCard);
 		int sum = this.playerHand.evaluate();
+		this.displayPlayerHand();
 		return sum;
 	}
 
@@ -92,6 +98,7 @@ public class BlackJack {
 		Card newCard = this.deck.drawCard();
 		this.CPUHand.addCard(newCard);
 		int sum = this.CPUHand.evaluate();
+		this.displayCPUHand();
 		return sum;
 	}
 
@@ -109,6 +116,14 @@ public class BlackJack {
 
 	public int getCPUHandSize() {
 		return this.CPUHand.getSize();
+	}
+
+	public void displayPlayerHand() {
+		System.out.println("Player Hand: " + this.playerHand);
+	}
+
+	public void displayCPUHand() {
+		System.out.println("CPU Hand: " + this.CPUHand);
 	}
 
 }
