@@ -17,9 +17,10 @@ public class GamblingSystem {
 	public void runSystem() throws InterruptedException {
 		Scanner input = new Scanner(System.in);
 		while(true) {
+			
+			System.out.println("Balance: " + this.account.getBalance());
 			System.out.println("Play BlackJack 'B' or Roulette 'R'?");
 			String userGameChoice = input.next();
-			System.out.println("input: " + userGameChoice);
 			if(userGameChoice.equals("B")) {
 				System.out.println("We are playing BlackJack");
 				this.runBlackJack();
@@ -37,14 +38,28 @@ public class GamblingSystem {
 	public void runBlackJack() {
 		double betAmount = 0;
 		String input ="";
-
+		this.blackjack = new BlackJack();
+		
+		System.out.println();
+		System.out.println("Balance: " + this.account.getBalance());
+		
 		betAmount = BlackJackAmount(input);
-
+		
 		if (betAmount <= this.account.getBalance()) {
-			this.blackjack.play();
+			this.account.withdraw(betAmount);
+						int result = this.blackjack.play();
+			if (result == -1) {
+			}
+			else if (result == 0) {
+				this.account.deposit(betAmount);
+			}
+			else if (result == 1) {
+				this.account.deposit(betAmount * 2);
+			}
 		} else {
 			System.out.println("Sorry, you don't have the necessary funds");
 		}
+		System.out.println();
 
 	}
 
