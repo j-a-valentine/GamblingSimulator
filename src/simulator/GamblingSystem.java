@@ -21,11 +21,11 @@ public class GamblingSystem {
 			System.out.println("Balance: " + this.account.getBalance());
 			System.out.println("Play BlackJack 'B' or Roulette 'R'?");
 			String userGameChoice = input.next();
-			if(userGameChoice.equals("B")) {
+			if(userGameChoice.equalsIgnoreCase("B")) {
 				System.out.println("We are playing BlackJack");
 				this.runBlackJack();
 			}
-			else if (userGameChoice.equals("R")) {
+			else if (userGameChoice.equalsIgnoreCase("R")) {
 				System.out.println("We are playing Roulette");
 
 				this.runRoulette();
