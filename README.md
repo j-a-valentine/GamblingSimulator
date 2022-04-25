@@ -41,3 +41,5 @@ Either run script.sh or use the following commands
 	- A Blackjack object that handles interactions between BankAccounts and Roulette
 	
 	- Added features that allow users to choose game and begin playing.
+	
+	- All games supprt the fully functioning banking system and bets.
