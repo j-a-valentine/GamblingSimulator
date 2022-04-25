@@ -6,12 +6,32 @@ public class GamblingSystem {
 
 	private Roulette roulette;
 	private BankAccount account;
-	//	private BlackJack blackjack;
+	private BlackJack blackjack;
 
 	public GamblingSystem() {
 		this.roulette = new Roulette();
-		//	this.blackjack = new BlackJack();
+		this.blackjack = new BlackJack();
 		this.account = new BankAccount();
+	}
+	
+	public void runSystem() throws InterruptedException {
+		Scanner input = new Scanner(System.in);
+		while(true) {
+			System.out.println("Play BlackJack 'B' or Roulette 'R'?");
+			String userGameChoice = input.next();
+			System.out.println("input: " + userGameChoice);
+			if(userGameChoice.equals("B")) {
+				System.out.println("We are playing BlackJack");
+				this.runBlackJack();
+			}
+			else if (userGameChoice.equals("R")) {
+				System.out.println("We are playing Roulette");
+
+				this.runRoulette();
+			} else {
+				System.out.println("Please put a valid command. Press 'B' for BlackJack, 'R' for Roulette");
+			}
+		}
 	}
 
 	public void runBlackJack() {
@@ -21,13 +41,15 @@ public class GamblingSystem {
 		betAmount = BlackJackAmount(input);
 
 		if (betAmount <= this.account.getBalance()) {
-			System.out.println("hi");
-
+			this.blackjack.play();
+		} else {
+			System.out.println("Sorry, you don't have the necessary funds");
 		}
 
 	}
 
 	public double BlackJackAmount(String input) {
+		input = promptBlackJackBet();
 		while (validBlackJackBet(input) == false) {
 			input = promptBlackJackBet();
 		}
