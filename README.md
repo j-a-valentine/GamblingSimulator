@@ -38,7 +38,7 @@ Either run script.sh or use the following commands
 	
 **Iteration 3:**
 
-	-A Black Jack Game that utlizes hands, decks, and cards.
+	- A Black Jack Game that utlizes hands, decks, and cards.
 
 	- A Blackjack object that handles interactions between BankAccounts and Roulette
 	
